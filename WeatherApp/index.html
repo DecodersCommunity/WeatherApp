@@ -9,62 +9,111 @@
 <body>
     <div class="card">
         <div class="search">
-            <input type="text" id="cityInput" placeholder="Enter city name">
-            <button id="searchButton"><img src="search.png" alt=""></button>
+            <input type="text" name="" id="" placeholder="enter city name" spellcheck=""false>
+            <button><img src="search.png" alt=""></button>
         </div>
         <div class="weather">
-            <img src="" alt="" class="weather-icon">
-            <h1 class="temp"></h1>
-            <h2 class="city"></h2>
+            <img src="rain.png" alt="" class="weather-icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">India</h1>
          </div>
          <div class="details">
             <div class="col">
                 <img src="humidity.png" alt="">
                 <div>
-                    <p class="humidity"></p>
+                    <p class="humidity">50%</p>
                     <p>Humidity</p>
                 </div>
-            </div>
-            <div class="col">
-                <img src="wind.png" alt="">
-                <div>
-                    <p class="wind"></p>
-                    <p>Wind Speed</p>
                 </div>
+                <div class="col">
+                    <img src="wind.png" alt="">
+                    <div>
+                        <p class="wind">15 Km/hr</p>
+                        <p>Wind Speed</p>
+                    </div>
             </div>
          </div>
     </div>   
-
-    <script>
-        const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeatherMap API key
-
-        const cityInput = document.getElementById('cityInput');
-        const searchButton = document.getElementById('searchButton');
-        const weatherIcon = document.querySelector('.weather-icon');
-        const temperature = document.querySelector('.temp');
-        const city = document.querySelector('.city');
-        const humidity = document.querySelector('.humidity');
-        const wind = document.querySelector('.wind');
-
-        searchButton.addEventListener('click', () => {
-            const cityName = cityInput.value;
-            if (cityName) {
-                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const { main, weather, wind: { speed } } = data;
-                        temperature.textContent = `${Math.round(main.temp)}°C`;
-                        city.textContent = cityName;
-                        humidity.textContent = `${main.humidity}%`;
-                        wind.textContent = `${speed} Km/hr`;
-                        weatherIcon.src = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                        alert('City not found. Please try again.');
-                    });
-            }
-        });
-    </script>
+</div>
 </body>
 </html>
+
+<!-- to make changes in the style you can make changes in the style section -->
+<style>
+    body{
+    background: #222;
+}
+.card{
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg,#00feba,#5b548a);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+.search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+      border: 0;
+    outline: 0;
+    background: #ebfffe;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+ }
+ .search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+ }
+ .search button img {
+    width: 16px;
+ }
+ .weather-icon{
+    width: 170px;
+    margin-top: 30px;
+ }
+
+ .weather h1{
+    font-size: 80px;
+    font-weight: 500;
+ }
+ .weather h2{
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+ }
+  .details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+ }
+ .col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+ }
+ .col img{
+    width: 40px;
+    margin-right: 10px;
+ }
+</style>
+
+<!-- to include the API write your code inside the script  -->
+<script>
